@@ -1,19 +1,34 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../connection/connection');
 
-const Contenido = sequelize.define(
-  'Contenido',
+const TrailerFlixView = sequelize.define(
+  'trailerflix_view',
   {
-    contenido_id: {
+    id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
+    },
+    poster: {
+      type: DataTypes.STRING,
+      alowNull: false,
+      get() {
+        return process.env.POSTER_ROUTE + this.getDataValue('poster');
+      },
     },
     titulo: {
       type: DataTypes.STRING,
       alowNull: false,
     },
-    resumen: {
+    categoria: {
       type: DataTypes.STRING,
+      alowNull: false,
+    },
+    genero: {
+      type: DataTypes.STRING,
+      alowNull: false,
+    },
+    resumen: {
+      type: DataTypes.INTEGER,
       alowNull: false,
     },
     temporadas: {
@@ -25,15 +40,6 @@ const Contenido = sequelize.define(
         return this.getDataValue('temporadas');
       },
     },
-
-    poster: {
-      type: DataTypes.STRING,
-      alowNull: false,
-      default: '',
-      get() {
-        return process.env.POSTER_ROUTE + this.getDataValue('poster');
-      },
-    },
     trailer: {
       type: DataTypes.STRING,
 
@@ -42,15 +48,15 @@ const Contenido = sequelize.define(
         return this.getDataValue('trailer');
       },
     },
-    categoria_id: {
-      type: DataTypes.INTEGER,
+    reparto: {
+      type: DataTypes.STRING,
+      alowNull: false,
     },
   },
   {
-    tableName: 'Contenido',
+    tableName: 'trailerflix_view',
     timestamps: false,
   }
 );
-// Contenido.hasOne(Categorias);
-// Categorias.hasMany(Contenido);
-module.exports = Contenido;
+
+module.exports = TrailerFlixView;
