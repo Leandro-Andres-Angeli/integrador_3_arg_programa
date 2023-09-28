@@ -32,7 +32,7 @@ const TrailerFlixView = sequelize.define(
       alowNull: false,
     },
     temporadas: {
-      type: DataTypes.INTEGER || DataTypes.STRING,
+      type: DataTypes.INTEGER,
       alowNull: true,
 
       get() {

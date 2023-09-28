@@ -12,6 +12,8 @@ const {
   handleError,
   resNoResult,
   validateNum,
+  validateString,
+  validateStringAndSpaces,
 } = require('./utils/handleErrors');
 const bodyParser = require('body-parser');
 const path = require('path');
@@ -115,10 +117,12 @@ server.get('/catalogo/', async (req, res) => {
 //e.i. /catalogo/:id (filtrar por código de la película/serie)
 server.get('/catalogo/id/:id', async (req, res) => {
   try {
-    const id = Number(req.params.id);
+    let id = req.params.id;
+
     if (!validateNum(id)) {
       return res.status(400).send({ error: 'debe ingresar un numero' });
     }
+    id = Number(id);
     const movie = await Contenido.findByPk(id, {
       attributes: [
         'contenido_id',
@@ -153,7 +157,7 @@ server.get('/catalogo/nombre/:nombre', async (req, res) => {
       return resNoResult(res);
     }
 
-    return res.status(200).send(movie);
+    return res.status(200).send(movies);
   } catch (err) {
     console.log(err);
     return res.status(404).send(handleError(err));
@@ -163,7 +167,12 @@ server.get('/catalogo/nombre/:nombre', async (req, res) => {
 // iii. /catalogo/:genero (filtrar por género del contenido)
 server.get('/catalogo/genero/:genero', async (req, res) => {
   let { genero } = req.params;
-
+  if (!validateStringAndSpacesAndSpecialChars(genero)) {
+    return res.status(400).send({
+      error:
+        'debe ingresar solo letras  o espacio en blanco, el espacio en blanco no puede estar al principio de la ruta  ',
+    });
+  }
   try {
     const movie = await Generos.findAll({
       include: [
@@ -198,7 +207,9 @@ server.get('/catalogo/genero/:genero', async (req, res) => {
 //   categoría que pueda existir)
 server.get('/catalogo/categoria/:categoria', async (req, res) => {
   let { categoria } = req.params;
-
+  if (!validateString(categoria)) {
+    return res.status(400).send({ error: 'debe ingresar solo letras' });
+  }
   try {
     const movie = await Categorias.findAll({
       include: [
@@ -239,7 +250,12 @@ server.get('/catalogo/categoria/:categoria', async (req, res) => {
 //Endpoint para buscar pelicula que contenga x actor
 server.get('/catalogo/actor/:actor', async (req, res) => {
   let { actor } = req.params;
-
+  if (!validateStringAndSpaces(actor)) {
+    return res.status(400).send({
+      error:
+        'debe ingresar solo letras  o espacio en blanco, el espacio en blanco no puede estar al principio de la ruta  ',
+    });
+  }
   try {
     const movie = await Actores.findAll({
       include: [

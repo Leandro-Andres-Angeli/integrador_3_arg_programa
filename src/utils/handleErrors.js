@@ -7,6 +7,25 @@ const handleError = (err) => {
 const handleNoResult = () => {
   return { resultados: 'no se encontraron resultados' };
 };
-const validateNum = (param) => /\d/.test(param);
+
+const validateNum = (param) => {
+  return param.match(/\D/g) === null;
+};
+const validateStringAndSpaces = (param) => {
+  return param.match(/^[a-zA-Z][a-zA-Z ]*$/) !== null;
+};
+const validateStringAndSpacesAndSpecialChars = (param) => {
+  return param.match(/^[a-zA-Z][a-zA-Z\s-]*$/) !== null;
+};
+const validateString = (param) => {
+  return param.match(/[^a-zA-Z]/g) === null;
+};
 const resNoResult = (res) => res.status(404).send(handleNoResult());
-module.exports = { handleError, resNoResult, validateNum };
+module.exports = {
+  handleError,
+  resNoResult,
+  validateNum,
+  validateString,
+  validateStringAndSpaces,
+  validateStringAndSpacesAndSpecialChars,
+};
