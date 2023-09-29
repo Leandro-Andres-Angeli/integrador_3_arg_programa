@@ -1,5 +1,7 @@
 # Entrega TP 3 Integrador Argentina Programa 4.0
 
+- Repositorio GIT : https://github.com/Leandro-Andres-Angeli/integrador_3_arg_programa
+
 ## Documentacion
 
 ### Configuracion del proyecto
@@ -63,10 +65,10 @@ Devuelve todas las peliculas cuyo titulo incluya el texto pasado por req.params.
   |------------|----------------------------------------------------------|---------|--------------|------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------|
   | 4 | ![The Crown Poster](https://localhost:8080/static/img/posters/1.jpg) | | 1 | The Crown | Este drama narra las rivalidades políticas y el romance de la reina Isabel II, así como los sucesos que moldearon la segunda mitad del siglo XX. | 1 |
 
-  - En caso de no encontrar resultados la API devolvera el siguiente resultado
-    | Campo | Valor |
-    |------------|----------------------|
-    | resultados | no se encontraron resultados |
+- En caso de no encontrar resultados la API devolvera el siguiente resultado
+  | Campo | Valor |
+  |------------|----------------------|
+  | resultados | no se encontraron resultados |
 
 #### 4) '/catalogo/genero/:genero'
 
