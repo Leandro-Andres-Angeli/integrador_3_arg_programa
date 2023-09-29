@@ -124,7 +124,7 @@ Recibe nombre o apellido de actor/actriz o parte de su nombre o apellido , busca
 
 - Se valido que se pueda ingresar texto y espacios en blanco en el param , el espacio en blanco no puede estar al principio (se implemento de esta forma para buscar por nombre y apellido ej : "Lili Reinhart","Al Pacino" ,etc)
 
-- Si se le pasa por ejemplo "Lili reinhart" como parametro devolvera las peliculas en las que haya actuado Lili reinhast dentro del listado
+- Si se le pasa por ejemplo "Lili reinhart" como parametro devolvera las peliculas en las que haya actuado Lili reinhart dentro del listado
 
 | actores_id | actores_nombre | Contenidos.temporadas | Contenidos.poster                                                 | Contenidos.trailer                                   | Contenidos.contenido_id | Contenidos.titulo | Contenidos.resumen                                                                                                                                                                                                                                                                                                                                          |
 | ---------- | -------------- | --------------------- | ----------------------------------------------------------------- | ---------------------------------------------------- | ----------------------- | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
